@@ -15,6 +15,7 @@ from tweepy_send_tweet import *
 from get_tweet_message import *
 import time
 from ln_cap import *
+from ln_flippening_tracker import *
 
 ENV_FILE = find_dotenv()
 if ENV_FILE:
@@ -36,8 +37,8 @@ def get_stream(set):
     )
     print(response.status_code)
     if response.status_code == 429:
-        print("ran into error 429 so waiting for 60 seconds for connection to be reset")
-        time.sleep(60)
+        print("ran into error 429 so waiting for 30 seconds for connection to be reset")
+        time.sleep(30)
         raise Exception(
             "Cannot get stream (HTTP {}): {}".format(
                 response.status_code, response.text
@@ -85,9 +86,17 @@ def get_stream(set):
                 if "cap" in json_response['data']['text'].lower().replace("lnmarketcapbot",""):
                     print("will tweet capacity")                
                     tweet_message = LN_cap()
-                    tweepy_send_tweet(tweet_message, tweet_id, json_response)
+                    tweet_image_path = "assets/tweet_image.jpg"
+                    tweepy_send_tweet(tweet_message, tweet_id, json_response, tweet_image_path)
                     clean_up_and_save_recent_interactions(json_response, throttle_time)
                 elif "compare" in json_response['data']['text'].lower():
+                    prompt_message = json_response['data']['text'].lower()
+                    prompt_parse_after_compare = prompt_message[8+prompt_message.find("compare"):]
+                    shitcoin = prompt_parse_after_compare[:prompt_parse_after_compare.find(" ")]
+                    query = LN_flippening_tracker(shitcoin)
+                    tweet_message = query[0]
+                    tweet_image_path = query[1]
+                    tweepy_send_tweet(tweet_message, tweet_id, json_response, tweet_image_path)
                     clean_up_and_save_recent_interactions(json_response, throttle_time)
                     pass
                 else:
