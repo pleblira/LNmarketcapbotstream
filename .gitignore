@@ -1,0 +1,20 @@
+.env
+.env
+/__pycache__
+tempCodeRunnerFile.py
+.DS_Store
+.env.bak
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+*/.DS_Store
+*/*/.DS_Store
+*/*/*/.DS_Store
+*/*/*/*/.DS_Store
+*/*/*/*/*/.DS_Store
+*/*/*/*/*/*/.DS_Store
+*.DS_Store
+.env
