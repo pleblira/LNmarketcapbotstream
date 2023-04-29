@@ -27,7 +27,7 @@ access_token = os.environ.get("ACCESS_TOKEN")
 access_token_secret = os.environ.get("ACCESS_TOKEN_SECRET")
 bearer_token = os.environ.get("BEARER_TOKEN")
 
-throttle_time = 60
+throttle_time = 30
 
 def get_stream(set):
     number_of_idle_pings = 0
@@ -83,17 +83,20 @@ def get_stream(set):
                 print("\n")
             if tweet_y == True:
                 print(json_response['data']['text'])
-                if "cap" in json_response['data']['text'].lower().replace("lnmarketcapbot",""):
+                if "cap" in json_response['data']['text'].lower().replace("lnmarketcapbot","").replace("capitalized",""):
                     print("will tweet capacity")                
                     tweet_message = LN_cap()
-                    tweet_image_path = "assets/tweet_image.jpg"
+                    tweet_image_path = "assets/tweet_image_sparkled.gif"
                     tweepy_send_tweet(tweet_message, tweet_id, json_response, tweet_image_path)
                     clean_up_and_save_recent_interactions(json_response, throttle_time)
                 elif "compare" in json_response['data']['text'].lower():
                     prompt_message = json_response['data']['text'].lower()
                     prompt_parse_after_compare = prompt_message[8+prompt_message.find("compare"):]
-                    shitcoin = prompt_parse_after_compare[:prompt_parse_after_compare.find(" ")]
-                    query = LN_flippening_tracker(shitcoin)
+                    if " " in prompt_parse_after_compare:
+                        shitcoin = prompt_parse_after_compare[:prompt_parse_after_compare.find(" ")]
+                    else:
+                        shitcoin = prompt_parse_after_compare
+                    query = LN_flippening_tracker(shitcoin.upper())
                     tweet_message = query[0]
                     tweet_image_path = query[1]
                     tweepy_send_tweet(tweet_message, tweet_id, json_response, tweet_image_path)

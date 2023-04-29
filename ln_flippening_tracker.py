@@ -20,8 +20,8 @@ def LN_flippening_tracker(shitcoin):
 
     # fetching shitcoin mcap
     # shitcoin = input("What shitcoin would you like to compare LN to? ").upper()
-    coinmarketcap_get_shitcoin_mcap(shitcoin)
-    shitcoin_mcap = coinmarketcap_get_shitcoin_mcap(shitcoin=shitcoin)[1]
+    # coinmarketcap_get_shitcoin_mcap(shitcoin)
+    shitcoin_mcap = coinmarketcap_get_shitcoin_mcap(shitcoin)[1]
     shitcoin_mcap_text = f"{shitcoin.upper()} market cap: ${shitcoin_mcap:,.0f}"
     
     # Comparing LN network with shitcoin
@@ -40,7 +40,7 @@ def LN_flippening_tracker(shitcoin):
 
     # asking if would like to choose image or pick a random one
     # random_image_or_pick = input("Pick and image or choose at random (pick/random)? ")
-    random_image_or_pick = random
+    random_image_or_pick = "random"
     if random_image_or_pick == "pick":
         image_url_or_path = input("insert image full URL or path here: ")
         # if image_url_or_path.find("http")>-1 and image_url_or_path.find("//")>0:

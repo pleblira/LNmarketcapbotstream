@@ -20,7 +20,8 @@ def coinmarketcap_get_shitcoin_mcap(shitcoin):
     session.headers.update(headers)
     url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
     parameters = { 'symbol': shitcoin, 'convert': 'USD' } # API parameters to pass in for retrieving specific cryptocurrency data
-
     response = session.get(url, params=parameters)
+    # print(response.text)
     shitcoin_mcap = json.loads(response.text)['data'][shitcoin]['quote']['USD']['market_cap']
+    print(shitcoin_mcap)
     return shitcoin, shitcoin_mcap
