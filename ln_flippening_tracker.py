@@ -55,6 +55,7 @@ def LN_flippening_tracker(shitcoin):
         print("Wrong option detected")
         quit()
     # subprocess.call(('open', tweet_image))
+    
 
     # custom_text_yes_or_no = input("Would you like to add custom text to the tweet (y/n)? ")
     # if custom_text_yes_or_no == "y":
