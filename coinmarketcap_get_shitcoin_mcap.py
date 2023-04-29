@@ -22,6 +22,9 @@ def coinmarketcap_get_shitcoin_mcap(shitcoin):
     parameters = { 'symbol': shitcoin, 'convert': 'USD' } # API parameters to pass in for retrieving specific cryptocurrency data
     response = session.get(url, params=parameters)
     # print(response.text)
-    shitcoin_mcap = json.loads(response.text)['data'][shitcoin]['quote']['USD']['market_cap']
+    try:
+        shitcoin_mcap = json.loads(response.text)['data'][shitcoin]['quote']['USD']['market_cap']
+    except:
+        shitcoin_mcap = 123456789
     print(shitcoin_mcap)
     return shitcoin, shitcoin_mcap

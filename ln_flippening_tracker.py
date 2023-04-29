@@ -22,6 +22,10 @@ def LN_flippening_tracker(shitcoin):
     # shitcoin = input("What shitcoin would you like to compare LN to? ").upper()
     # coinmarketcap_get_shitcoin_mcap(shitcoin)
     shitcoin_mcap = coinmarketcap_get_shitcoin_mcap(shitcoin)[1]
+    if shitcoin_mcap == 123456789:
+        tweet_message = "Shitcoin not found, try again."
+        tweet_image_path = "assets/blank_belly_dark_mode/4.jpg"
+        return tweet_message, tweet_image_path
     shitcoin_mcap_text = f"{shitcoin.upper()} market cap: ${shitcoin_mcap:,.0f}"
     
     # Comparing LN network with shitcoin
