@@ -68,7 +68,7 @@ def LN_flippening_tracker(shitcoin):
 
     # LIGHTNING NETWORK FLIPPENING TRACKER TWEET
     tweet_message = (
-    "LIGHTNING NETWORK FLIPPENING TRACKER - LN vs $" + shitcoin + "\n\n" + 
+    "LIGHTNING FLIPPENING TRACKER - LN vs $" + shitcoin + "\n\n" + 
     LN_capacity_text + "\n" + 
     btc_usd_text + "\n" + 
     LN_mcap_text + "\n\n" + 
