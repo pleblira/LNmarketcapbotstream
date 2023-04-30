@@ -34,7 +34,7 @@ def LN_flippening_tracker(shitcoin):
     if percentage_bar > 20:
         percentage_bar = 20
     percentage_calculation = str(f"{LN_capacity_in_BTC*btc_usd/shitcoin_mcap*100:.2f}%")
-    if float(percentage_calculation) > 100:
+    if float(percentage_calculation.replace("%","")) > 100:
         percentage_calculation = f"FLIPPENED (LN market cap = {float(percentage_calculation)/100:.2f}X ${shitcoin.upper()}'s market cap)"
 
     flippening_progress_text = (
