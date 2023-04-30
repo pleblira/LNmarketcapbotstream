@@ -83,7 +83,7 @@ def get_stream(set):
                 print("\n")
             if tweet_y == True:
                 print(json_response['data']['text'])
-                if "cap" in json_response['data']['text'].lower().replace("lnmarketcapbot","").replace("capitalized",""):
+                if " cap" in json_response['data']['text'].lower().replace("lnmarketcapbot","").replace("capitalized","").replace("capital","").replace("mcap",""):
                     print("will tweet capacity")                
                     tweet_message = LN_cap()
                     tweet_image_path = "assets/tweet_image_sparkled.gif"
